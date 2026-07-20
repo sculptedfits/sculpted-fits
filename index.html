@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sculpted Fits — Shop the Look</title>
+<meta name="description" content="Curated fashion outfits. All shoppable. New looks every week."/>
+<style>
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--acc:#c9a96e;--bg:#faf8f5;--sur:#fff;--bor:#ece8e1;--txt:#1a1a1a;--mut:#888;--grn:#2d6a4f;--rad:14px}
+body{font-family:'Georgia',serif;background:var(--bg);color:var(--txt);min-height:100vh}
+a{text-decoration:none;color:inherit}
+header{background:var(--sur);border-bottom:1px solid var(--bor);padding:20px 16px 16px;text-align:center;position:sticky;top:0;z-index:100}
+header h1{font-size:22px;letter-spacing:3px;text-transform:uppercase;font-weight:normal}
+header p{font-size:11px;color:var(--mut);margin-top:3px;font-family:sans-serif;letter-spacing:1px}
+
+.search-wrap{max-width:340px;margin:12px auto 0;position:relative}
+.search-wrap input{width:100%;padding:9px 14px 9px 36px;border:1px solid var(--bor);border-radius:30px;font-family:sans-serif;font-size:13px;background:var(--bg);color:var(--txt);outline:none}
+.search-wrap input:focus{border-color:var(--acc)}
+.search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.4;pointer-events:none}
+.results-count{text-align:center;font-family:sans-serif;font-size:12px;color:var(--mut);padding:8px 0 0}
+.grid{max-width:1200px;margin:20px auto;padding:0 12px 60px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,1fr);gap:18px}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,1fr);gap:20px}}
+.card{background:var(--sur);border:1px solid var(--bor);border-radius:var(--rad);overflow:hidden;transition:transform .2s,box-shadow .2s;display:block}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.08)}
+.img-wrap{position:relative;aspect-ratio:4/5;background:#f0ece6;overflow:hidden}
+.img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.no-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:sans-serif;font-size:11px;color:#bbb}
+.tag{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.92);border-radius:20px;padding:3px 10px;font-size:11px;font-family:sans-serif;font-weight:700;backdrop-filter:blur(4px)}
+.foot{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;gap:6px}
+.mood{font-size:11px;font-family:sans-serif;color:var(--mut);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.price{font-size:13px;font-family:sans-serif;color:var(--acc);font-weight:700;flex-shrink:0}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;font-family:sans-serif;font-size:14px;color:var(--mut)}
+footer{text-align:center;padding:20px;font-size:11px;color:var(--mut);font-family:sans-serif;border-top:1px solid var(--bor)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Sculpted Fits</h1>
+  <p>tap any outfit to shop the look</p>
+  <div class="search-wrap">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="Search e.g. 23, outfit 5, #12 ..."/>
+  </div>
+  <div class="results-count" id="count">74 outfits</div>
+</header>
+<div class="grid" id="grid"><a class="card" href="post1/"
+  data-num="1"
+  data-mood="🌸 blush + ivory + gold — blush pink"
+  data-search="outfit 1 outfit#1 #1 outfit no 1 outfitno1">
+  <div class="img-wrap">
+    <img src="images/outfit1.jpg" alt="Outfit 1" loading="lazy"/>
+    <span class="tag">Outfit 1</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Blush + Ivory + Gold — blush pink</span>
+    <span class="price">₹3,970</span>
+  </div>
+</a><a class="card" href="post2/"
+  data-num="2"
+  data-mood="✨ luxury editorial — champagne"
+  data-search="outfit 2 outfit#2 #2 outfit no 2 outfitno2">
+  <div class="img-wrap">
+    <img src="images/outfit2.jpg" alt="Outfit 2" loading="lazy"/>
+    <span class="tag">Outfit 2</span>
+  </div>
+  <div class="foot">
+    <span class="mood">✨ Luxury Editorial — champagne</span>
+    <span class="price">₹599</span>
+  </div>
+</a><a class="card" href="post3/"
+  data-num="3"
+  data-mood="🥂 chocolate + beige + gold — chocolate brown"
+  data-search="outfit 3 outfit#3 #3 outfit no 3 outfitno3">
+  <div class="img-wrap">
+    <img src="images/outfit3.jpg" alt="Outfit 3" loading="lazy"/>
+    <span class="tag">Outfit 3</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Chocolate + Beige + Gold — chocolate brown</span>
+    <span class="price">₹599</span>
+  </div>
+</a><a class="card" href="post4/"
+  data-num="4"
+  data-mood="🌸 blush + ivory + gold — ivory"
+  data-search="outfit 4 outfit#4 #4 outfit no 4 outfitno4">
+  <div class="img-wrap">
+    <img src="images/outfit4.jpg" alt="Outfit 4" loading="lazy"/>
+    <span class="tag">Outfit 4</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Blush + Ivory + Gold — ivory</span>
+    <span class="price">₹499</span>
+  </div>
+</a><a class="card" href="post5/"
+  data-num="5"
+  data-mood="☁️ clean girl — white"
+  data-search="outfit 5 outfit#5 #5 outfit no 5 outfitno5">
+  <div class="img-wrap">
+    <img src="images/outfit5.jpg" alt="Outfit 5" loading="lazy"/>
+    <span class="tag">Outfit 5</span>
+  </div>
+  <div class="foot">
+    <span class="mood">☁️ Clean Girl — white</span>
+    <span class="price">₹697</span>
+  </div>
+</a><a class="card" href="post6/"
+  data-num="6"
+  data-mood="🌙 burgundy + cream + gold — burgundy"
+  data-search="outfit 6 outfit#6 #6 outfit no 6 outfitno6">
+  <div class="img-wrap">
+    <img src="images/outfit6.jpg" alt="Outfit 6" loading="lazy"/>
+    <span class="tag">Outfit 6</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Burgundy + Cream + Gold — burgundy</span>
+    <span class="price">₹599</span>
+  </div>
+</a><a class="card" href="post7/"
+  data-num="7"
+  data-mood="🌸 soft romance — blush pink"
+  data-search="outfit 7 outfit#7 #7 outfit no 7 outfitno7">
+  <div class="img-wrap">
+    <img src="images/outfit7.jpg" alt="Outfit 7" loading="lazy"/>
+    <span class="tag">Outfit 7</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Soft Romance — blush pink</span>
+    <span class="price">₹749</span>
+  </div>
+</a><a class="card" href="post8/"
+  data-num="8"
+  data-mood="🌺 spring bloom — lavender"
+  data-search="outfit 8 outfit#8 #8 outfit no 8 outfitno8">
+  <div class="img-wrap">
+    <img src="images/outfit8.png" alt="Outfit 8" loading="lazy"/>
+    <span class="tag">Outfit 8</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — lavender</span>
+    <span class="price">₹599</span>
+  </div>
+</a><a class="card" href="post9/"
+  data-num="9"
+  data-mood="🌿 nature girl — sage green"
+  data-search="outfit 9 outfit#9 #9 outfit no 9 outfitno9">
+  <div class="img-wrap">
+    <img src="images/outfit9.png" alt="Outfit 9" loading="lazy"/>
+    <span class="tag">Outfit 9</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌿 Nature Girl — sage green</span>
+    <span class="price">₹751</span>
+  </div>
+</a><a class="card" href="post10/"
+  data-num="10"
+  data-mood="🌙 burgundy + cream + gold — wine red"
+  data-search="outfit 10 outfit#10 #10 outfit no 10 outfitno10">
+  <div class="img-wrap">
+    <img src="images/outfit10.png" alt="Outfit 10" loading="lazy"/>
+    <span class="tag">Outfit 10</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Burgundy + Cream + Gold — wine red</span>
+    <span class="price">₹429</span>
+  </div>
+</a><a class="card" href="post11/"
+  data-num="11"
+  data-mood="🥂 chocolate + beige + gold — chocolate brown"
+  data-search="outfit 11 outfit#11 #11 outfit no 11 outfitno11">
+  <div class="img-wrap">
+    <img src="images/outfit11.png" alt="Outfit 11" loading="lazy"/>
+    <span class="tag">Outfit 11</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Chocolate + Beige + Gold — chocolate brown</span>
+    <span class="price">₹1,260</span>
+  </div>
+</a><a class="card" href="post12/"
+  data-num="12"
+  data-mood="🌺 spring bloom — lavender"
+  data-search="outfit 12 outfit#12 #12 outfit no 12 outfitno12">
+  <div class="img-wrap">
+    <img src="images/outfit12.png" alt="Outfit 12" loading="lazy"/>
+    <span class="tag">Outfit 12</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — lavender</span>
+    <span class="price">₹1,345</span>
+  </div>
+</a><a class="card" href="post13/"
+  data-num="13"
+  data-mood="🌸 blush + ivory + gold — blush pink"
+  data-search="outfit 13 outfit#13 #13 outfit no 13 outfitno13">
+  <div class="img-wrap">
+    <img src="images/outfit13.png" alt="Outfit 13" loading="lazy"/>
+    <span class="tag">Outfit 13</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Blush + Ivory + Gold — blush pink</span>
+    <span class="price">₹1,611</span>
+  </div>
+</a><a class="card" href="post14/"
+  data-num="14"
+  data-mood="✨ luxury editorial — champagne"
+  data-search="outfit 14 outfit#14 #14 outfit no 14 outfitno14">
+  <div class="img-wrap">
+    <img src="images/outfit14.png" alt="Outfit 14" loading="lazy"/>
+    <span class="tag">Outfit 14</span>
+  </div>
+  <div class="foot">
+    <span class="mood">✨ Luxury Editorial — champagne</span>
+    <span class="price">₹1,360</span>
+  </div>
+</a><a class="card" href="post15/"
+  data-num="15"
+  data-mood="🌸 blush + ivory + gold — ivory"
+  data-search="outfit 15 outfit#15 #15 outfit no 15 outfitno15">
+  <div class="img-wrap">
+    <img src="images/outfit15.png" alt="Outfit 15" loading="lazy"/>
+    <span class="tag">Outfit 15</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Blush + Ivory + Gold — ivory</span>
+    <span class="price">₹1,246</span>
+  </div>
+</a><a class="card" href="post16/"
+  data-num="16"
+  data-mood="🌸 blush + ivory + gold — soft rose"
+  data-search="outfit 16 outfit#16 #16 outfit no 16 outfitno16">
+  <div class="img-wrap">
+    <img src="images/outfit16.png" alt="Outfit 16" loading="lazy"/>
+    <span class="tag">Outfit 16</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Blush + Ivory + Gold — soft rose</span>
+    <span class="price">₹1,781</span>
+  </div>
+</a><a class="card" href="post17/"
+  data-num="17"
+  data-mood="🌙 burgundy + cream + gold — burgundy"
+  data-search="outfit 17 outfit#17 #17 outfit no 17 outfitno17">
+  <div class="img-wrap">
+    <img src="images/outfit17.png" alt="Outfit 17" loading="lazy"/>
+    <span class="tag">Outfit 17</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Burgundy + Cream + Gold — burgundy</span>
+    <span class="price">₹1,696</span>
+  </div>
+</a><a class="card" href="post18/"
+  data-num="18"
+  data-mood="☁️ clean girl — white"
+  data-search="outfit 18 outfit#18 #18 outfit no 18 outfitno18">
+  <div class="img-wrap">
+    <img src="images/outfit18.png" alt="Outfit 18" loading="lazy"/>
+    <span class="tag">Outfit 18</span>
+  </div>
+  <div class="foot">
+    <span class="mood">☁️ Clean Girl — white</span>
+    <span class="price">₹1,537</span>
+  </div>
+</a><a class="card" href="post19/"
+  data-num="19"
+  data-mood="🌊 coastal — white"
+  data-search="outfit 19 outfit#19 #19 outfit no 19 outfitno19">
+  <div class="img-wrap">
+    <img src="images/outfit19.png" alt="Outfit 19" loading="lazy"/>
+    <span class="tag">Outfit 19</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌊 Coastal — white</span>
+    <span class="price">₹1,287</span>
+  </div>
+</a><a class="card" href="post20/"
+  data-num="20"
+  data-mood="🌿 nature girl — sage green"
+  data-search="outfit 20 outfit#20 #20 outfit no 20 outfitno20">
+  <div class="img-wrap">
+    <img src="images/outfit20.png" alt="Outfit 20" loading="lazy"/>
+    <span class="tag">Outfit 20</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌿 Nature Girl — sage green</span>
+    <span class="price">₹1,557</span>
+  </div>
+</a><a class="card" href="post21/"
+  data-num="21"
+  data-mood="☁️ clean girl — cream"
+  data-search="outfit 21 outfit#21 #21 outfit no 21 outfitno21">
+  <div class="img-wrap">
+    <img src="images/outfit21.png" alt="Outfit 21" loading="lazy"/>
+    <span class="tag">Outfit 21</span>
+  </div>
+  <div class="foot">
+    <span class="mood">☁️ Clean Girl — cream</span>
+    <span class="price">₹1,548</span>
+  </div>
+</a><a class="card" href="post22/"
+  data-num="22"
+  data-mood="🥂 chocolate + beige + gold — chocolate brown"
+  data-search="outfit 22 outfit#22 #22 outfit no 22 outfitno22">
+  <div class="img-wrap">
+    <img src="images/outfit22.png" alt="Outfit 22" loading="lazy"/>
+    <span class="tag">Outfit 22</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Chocolate + Beige + Gold — chocolate brown</span>
+    <span class="price">₹1,108</span>
+  </div>
+</a><a class="card" href="post23/"
+  data-num="23"
+  data-mood="🥂 old money — beige"
+  data-search="outfit 23 outfit#23 #23 outfit no 23 outfitno23">
+  <div class="img-wrap">
+    <img src="images/outfit23.png" alt="Outfit 23" loading="lazy"/>
+    <span class="tag">Outfit 23</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Old Money — beige</span>
+    <span class="price">₹1,101</span>
+  </div>
+</a><a class="card" href="post24/"
+  data-num="24"
+  data-mood="🌸 soft romance — blush pink"
+  data-search="outfit 24 outfit#24 #24 outfit no 24 outfitno24">
+  <div class="img-wrap">
+    <img src="images/outfit24.png" alt="Outfit 24" loading="lazy"/>
+    <span class="tag">Outfit 24</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Soft Romance — blush pink</span>
+    <span class="price">₹1,004</span>
+  </div>
+</a><a class="card" href="post25/"
+  data-num="25"
+  data-mood="🌺 spring bloom — lavender"
+  data-search="outfit 25 outfit#25 #25 outfit no 25 outfitno25">
+  <div class="img-wrap">
+    <img src="images/outfit25.png" alt="Outfit 25" loading="lazy"/>
+    <span class="tag">Outfit 25</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — lavender</span>
+    <span class="price">₹1,097</span>
+  </div>
+</a><a class="card" href="post26/"
+  data-num="26"
+  data-mood="🌺 spring bloom — peach"
+  data-search="outfit 26 outfit#26 #26 outfit no 26 outfitno26">
+  <div class="img-wrap">
+    <img src="images/outfit26.png" alt="Outfit 26" loading="lazy"/>
+    <span class="tag">Outfit 26</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — peach</span>
+    <span class="price">₹1,086</span>
+  </div>
+</a><a class="card" href="post27/"
+  data-num="27"
+  data-mood="✨ luxury editorial — champagne"
+  data-search="outfit 27 outfit#27 #27 outfit no 27 outfitno27">
+  <div class="img-wrap">
+    <img src="images/outfit27.png" alt="Outfit 27" loading="lazy"/>
+    <span class="tag">Outfit 27</span>
+  </div>
+  <div class="foot">
+    <span class="mood">✨ Luxury Editorial — champagne</span>
+    <span class="price">₹902</span>
+  </div>
+</a><a class="card" href="post28/"
+  data-num="28"
+  data-mood="🌊 white + sky blue + silver — sky blue"
+  data-search="outfit 28 outfit#28 #28 outfit no 28 outfitno28">
+  <div class="img-wrap">
+    <img src="images/outfit28.png" alt="Outfit 28" loading="lazy"/>
+    <span class="tag">Outfit 28</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌊 White + Sky Blue + Silver — sky blue</span>
+    <span class="price">₹1,098</span>
+  </div>
+</a><a class="card" href="post29/"
+  data-num="29"
+  data-mood="🌺 spring bloom — lavender"
+  data-search="outfit 29 outfit#29 #29 outfit no 29 outfitno29">
+  <div class="img-wrap">
+    <img src="images/outfit29.png" alt="Outfit 29" loading="lazy"/>
+    <span class="tag">Outfit 29</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — lavender</span>
+    <span class="price">₹828</span>
+  </div>
+</a><a class="card" href="post30/"
+  data-num="30"
+  data-mood="🌊 white + sky blue + silver — powder blue"
+  data-search="outfit 30 outfit#30 #30 outfit no 30 outfitno30">
+  <div class="img-wrap">
+    <img src="images/outfit30.png" alt="Outfit 30" loading="lazy"/>
+    <span class="tag">Outfit 30</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌊 White + Sky Blue + Silver — powder blue</span>
+    <span class="price">₹828</span>
+  </div>
+</a><a class="card" href="post31/"
+  data-num="31"
+  data-mood="🌊 white + sky blue + silver — white"
+  data-search="outfit 31 outfit#31 #31 outfit no 31 outfitno31">
+  <div class="img-wrap">
+    <img src="images/outfit31.png" alt="Outfit 31" loading="lazy"/>
+    <span class="tag">Outfit 31</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌊 White + Sky Blue + Silver — white</span>
+    <span class="price">₹828</span>
+  </div>
+</a><a class="card" href="post32/"
+  data-num="32"
+  data-mood="🍓 coquette — baby pink"
+  data-search="outfit 32 outfit#32 #32 outfit no 32 outfitno32">
+  <div class="img-wrap">
+    <img src="images/outfit32.png" alt="Outfit 32" loading="lazy"/>
+    <span class="tag">Outfit 32</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🍓 Coquette — baby pink</span>
+    <span class="price">₹828</span>
+  </div>
+</a><a class="card" href="post33/"
+  data-num="33"
+  data-mood="🌸 blush + ivory + gold — blush pink"
+  data-search="outfit 33 outfit#33 #33 outfit no 33 outfitno33">
+  <div class="img-wrap">
+    <img src="images/outfit33.png" alt="Outfit 33" loading="lazy"/>
+    <span class="tag">Outfit 33</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Blush + Ivory + Gold — blush pink</span>
+    <span class="price">₹828</span>
+  </div>
+</a><a class="card" href="post34/"
+  data-num="34"
+  data-mood="🌊 white + sky blue + silver — sky blue"
+  data-search="outfit 34 outfit#34 #34 outfit no 34 outfitno34">
+  <div class="img-wrap">
+    <img src="images/outfit34.png" alt="Outfit 34" loading="lazy"/>
+    <span class="tag">Outfit 34</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌊 White + Sky Blue + Silver — sky blue</span>
+    <span class="price">₹648</span>
+  </div>
+</a><a class="card" href="post35/"
+  data-num="35"
+  data-mood="🍓 coquette — strawberry red"
+  data-search="outfit 35 outfit#35 #35 outfit no 35 outfitno35">
+  <div class="img-wrap">
+    <img src="images/outfit35.png" alt="Outfit 35" loading="lazy"/>
+    <span class="tag">Outfit 35</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🍓 Coquette — strawberry red</span>
+    <span class="price">₹798</span>
+  </div>
+</a><a class="card" href="post36/"
+  data-num="36"
+  data-mood="🥂 old money — beige"
+  data-search="outfit 36 outfit#36 #36 outfit no 36 outfitno36">
+  <div class="img-wrap">
+    <img src="images/outfit36.png" alt="Outfit 36" loading="lazy"/>
+    <span class="tag">Outfit 36</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Old Money — beige</span>
+    <span class="price">₹828</span>
+  </div>
+</a><a class="card" href="post37/"
+  data-num="37"
+  data-mood="🌊 coastal — white"
+  data-search="outfit 37 outfit#37 #37 outfit no 37 outfitno37">
+  <div class="img-wrap">
+    <img src="images/outfit37.png" alt="Outfit 37" loading="lazy"/>
+    <span class="tag">Outfit 37</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌊 Coastal — white</span>
+    <span class="price">₹798</span>
+  </div>
+</a><a class="card" href="post38/"
+  data-num="38"
+  data-mood="🥂 chocolate + beige + gold — chocolate brown"
+  data-search="outfit 38 outfit#38 #38 outfit no 38 outfitno38">
+  <div class="img-wrap">
+    <img src="images/outfit38.png" alt="Outfit 38" loading="lazy"/>
+    <span class="tag">Outfit 38</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Chocolate + Beige + Gold — chocolate brown</span>
+    <span class="price">₹499</span>
+  </div>
+</a><a class="card" href="post39/"
+  data-num="39"
+  data-mood="🥂 old money — beige"
+  data-search="outfit 39 outfit#39 #39 outfit no 39 outfitno39">
+  <div class="img-wrap">
+    <img src="images/outfit39.png" alt="Outfit 39" loading="lazy"/>
+    <span class="tag">Outfit 39</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Old Money — beige</span>
+    <span class="price">₹949</span>
+  </div>
+</a><a class="card" href="post40/"
+  data-num="40"
+  data-mood="🌙 burgundy + cream + gold — wine red"
+  data-search="outfit 40 outfit#40 #40 outfit no 40 outfitno40">
+  <div class="img-wrap">
+    <img src="images/outfit40.png" alt="Outfit 40" loading="lazy"/>
+    <span class="tag">Outfit 40</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Burgundy + Cream + Gold — wine red</span>
+    <span class="price">₹466</span>
+  </div>
+</a><a class="card" href="post41/"
+  data-num="41"
+  data-mood="🥂 chocolate + beige + gold — beige"
+  data-search="outfit 41 outfit#41 #41 outfit no 41 outfitno41">
+  <div class="img-wrap">
+    <img src="images/outfit41.png" alt="Outfit 41" loading="lazy"/>
+    <span class="tag">Outfit 41</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Chocolate + Beige + Gold — beige</span>
+    <span class="price">₹949</span>
+  </div>
+</a><a class="card" href="post42/"
+  data-num="42"
+  data-mood="🌙 burgundy + cream + gold — deep rose"
+  data-search="outfit 42 outfit#42 #42 outfit no 42 outfitno42">
+  <div class="img-wrap">
+    <img src="images/outfit42.png" alt="Outfit 42" loading="lazy"/>
+    <span class="tag">Outfit 42</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Burgundy + Cream + Gold — deep rose</span>
+    <span class="price">₹499</span>
+  </div>
+</a><a class="card" href="post43/"
+  data-num="43"
+  data-mood="🍓 coquette — cherry red"
+  data-search="outfit 43 outfit#43 #43 outfit no 43 outfitno43">
+  <div class="img-wrap">
+    <img src="images/outfit43.png" alt="Outfit 43" loading="lazy"/>
+    <span class="tag">Outfit 43</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🍓 Coquette — cherry red</span>
+    <span class="price">₹949</span>
+  </div>
+</a><a class="card" href="post44/"
+  data-num="44"
+  data-mood="🥂 chocolate + beige + gold — caramel"
+  data-search="outfit 44 outfit#44 #44 outfit no 44 outfitno44">
+  <div class="img-wrap">
+    <img src="images/outfit44.png" alt="Outfit 44" loading="lazy"/>
+    <span class="tag">Outfit 44</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Chocolate + Beige + Gold — caramel</span>
+    <span class="price">₹499</span>
+  </div>
+</a><a class="card" href="post45/"
+  data-num="45"
+  data-mood="☁️ clean girl — cream"
+  data-search="outfit 45 outfit#45 #45 outfit no 45 outfitno45">
+  <div class="img-wrap">
+    <img src="images/outfit45.png" alt="Outfit 45" loading="lazy"/>
+    <span class="tag">Outfit 45</span>
+  </div>
+  <div class="foot">
+    <span class="mood">☁️ Clean Girl — cream</span>
+    <span class="price">₹949</span>
+  </div>
+</a><a class="card" href="post46/"
+  data-num="46"
+  data-mood="🌿 nature girl — sage green"
+  data-search="outfit 46 outfit#46 #46 outfit no 46 outfitno46">
+  <div class="img-wrap">
+    <img src="images/outfit46.png" alt="Outfit 46" loading="lazy"/>
+    <span class="tag">Outfit 46</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌿 Nature Girl — sage green</span>
+    <span class="price">₹499</span>
+  </div>
+</a><a class="card" href="post47/"
+  data-num="47"
+  data-mood="🌺 spring bloom — lavender"
+  data-search="outfit 47 outfit#47 #47 outfit no 47 outfitno47">
+  <div class="img-wrap">
+    <img src="images/outfit47.png" alt="Outfit 47" loading="lazy"/>
+    <span class="tag">Outfit 47</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — lavender</span>
+    <span class="price">₹799</span>
+  </div>
+</a><a class="card" href="post48/"
+  data-num="48"
+  data-mood="🌙 burgundy + cream + gold — burgundy"
+  data-search="outfit 48 outfit#48 #48 outfit no 48 outfitno48">
+  <div class="img-wrap">
+    <img src="images/outfit48.png" alt="Outfit 48" loading="lazy"/>
+    <span class="tag">Outfit 48</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Burgundy + Cream + Gold — burgundy</span>
+    <span class="price">₹1,268</span>
+  </div>
+</a><a class="card" href="post49/"
+  data-num="49"
+  data-mood="🌙 dark feminine — black"
+  data-search="outfit 49 outfit#49 #49 outfit no 49 outfitno49">
+  <div class="img-wrap">
+    <img src="images/outfit49.png" alt="Outfit 49" loading="lazy"/>
+    <span class="tag">Outfit 49</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Dark Feminine — black</span>
+    <span class="price">₹1,479</span>
+  </div>
+</a><a class="card" href="post50/"
+  data-num="50"
+  data-mood="🌺 spring bloom — lavender"
+  data-search="outfit 50 outfit#50 #50 outfit no 50 outfitno50">
+  <div class="img-wrap">
+    <img src="images/outfit50.png" alt="Outfit 50" loading="lazy"/>
+    <span class="tag">Outfit 50</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — lavender</span>
+    <span class="price">₹1,529</span>
+  </div>
+</a><a class="card" href="post51/"
+  data-num="51"
+  data-mood="🌙 dark feminine — burgundy"
+  data-search="outfit 51 outfit#51 #51 outfit no 51 outfitno51">
+  <div class="img-wrap">
+    <img src="images/outfit51.png" alt="Outfit 51" loading="lazy"/>
+    <span class="tag">Outfit 51</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Dark Feminine — burgundy</span>
+    <span class="price">₹776</span>
+  </div>
+</a><a class="card" href="post52/"
+  data-num="52"
+  data-mood="☁️ clean girl — white"
+  data-search="outfit 52 outfit#52 #52 outfit no 52 outfitno52">
+  <div class="img-wrap">
+    <img src="images/outfit52.png" alt="Outfit 52" loading="lazy"/>
+    <span class="tag">Outfit 52</span>
+  </div>
+  <div class="foot">
+    <span class="mood">☁️ Clean Girl — white</span>
+    <span class="price">₹977</span>
+  </div>
+</a><a class="card" href="post53/"
+  data-num="53"
+  data-mood="🌙 burgundy + cream + gold — burgundy"
+  data-search="outfit 53 outfit#53 #53 outfit no 53 outfitno53">
+  <div class="img-wrap">
+    <img src="images/outfit53.png" alt="Outfit 53" loading="lazy"/>
+    <span class="tag">Outfit 53</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Burgundy + Cream + Gold — burgundy</span>
+    <span class="price">₹498</span>
+  </div>
+</a><a class="card" href="post54/"
+  data-num="54"
+  data-mood="🌺 spring bloom — lavender"
+  data-search="outfit 54 outfit#54 #54 outfit no 54 outfitno54">
+  <div class="img-wrap">
+    <img src="images/outfit54.png" alt="Outfit 54" loading="lazy"/>
+    <span class="tag">Outfit 54</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — lavender</span>
+    <span class="price">₹1,094</span>
+  </div>
+</a><a class="card" href="post55/"
+  data-num="55"
+  data-mood="🥂 old money — beige"
+  data-search="outfit 55 outfit#55 #55 outfit no 55 outfitno55">
+  <div class="img-wrap">
+    <img src="images/outfit55.png" alt="Outfit 55" loading="lazy"/>
+    <span class="tag">Outfit 55</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Old Money — beige</span>
+    <span class="price">₹1,209</span>
+  </div>
+</a><a class="card" href="post56/"
+  data-num="56"
+  data-mood="🌿 sage + cream + gold — sage green"
+  data-search="outfit 56 outfit#56 #56 outfit no 56 outfitno56">
+  <div class="img-wrap">
+    <img src="images/outfit56.png" alt="Outfit 56" loading="lazy"/>
+    <span class="tag">Outfit 56</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌿 Sage + Cream + Gold — sage green</span>
+    <span class="price">₹1,029</span>
+  </div>
+</a><a class="card" href="post57/"
+  data-num="57"
+  data-mood="🌿 sage + cream + gold — moss green"
+  data-search="outfit 57 outfit#57 #57 outfit no 57 outfitno57">
+  <div class="img-wrap">
+    <img src="images/outfit57.png" alt="Outfit 57" loading="lazy"/>
+    <span class="tag">Outfit 57</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌿 Sage + Cream + Gold — moss green</span>
+    <span class="price">₹1,198</span>
+  </div>
+</a><a class="card" href="post58/"
+  data-num="58"
+  data-mood="☁️ clean girl — white"
+  data-search="outfit 58 outfit#58 #58 outfit no 58 outfitno58">
+  <div class="img-wrap">
+    <img src="images/outfit58.png" alt="Outfit 58" loading="lazy"/>
+    <span class="tag">Outfit 58</span>
+  </div>
+  <div class="foot">
+    <span class="mood">☁️ Clean Girl — white</span>
+    <span class="price">₹2,091</span>
+  </div>
+</a><a class="card" href="post59/"
+  data-num="59"
+  data-mood="☁️ clean girl — white"
+  data-search="outfit 59 outfit#59 #59 outfit no 59 outfitno59">
+  <div class="img-wrap">
+    <img src="images/outfit59.png" alt="Outfit 59" loading="lazy"/>
+    <span class="tag">Outfit 59</span>
+  </div>
+  <div class="foot">
+    <span class="mood">☁️ Clean Girl — white</span>
+    <span class="price">₹2,091</span>
+  </div>
+</a><a class="card" href="post60/"
+  data-num="60"
+  data-mood="🌙 dark feminine — black"
+  data-search="outfit 60 outfit#60 #60 outfit no 60 outfitno60">
+  <div class="img-wrap">
+    <img src="images/outfit60.png" alt="Outfit 60" loading="lazy"/>
+    <span class="tag">Outfit 60</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Dark Feminine — black</span>
+    <span class="price">₹2,202</span>
+  </div>
+</a><a class="card" href="post61/"
+  data-num="61"
+  data-mood="✨ luxury editorial — champagne"
+  data-search="outfit 61 outfit#61 #61 outfit no 61 outfitno61">
+  <div class="img-wrap">
+    <img src="images/outfit61.png" alt="Outfit 61" loading="lazy"/>
+    <span class="tag">Outfit 61</span>
+  </div>
+  <div class="foot">
+    <span class="mood">✨ Luxury Editorial — champagne</span>
+    <span class="price">₹3,326</span>
+  </div>
+</a><a class="card" href="post62/"
+  data-num="62"
+  data-mood="🌸 soft romance — blush pink"
+  data-search="outfit 62 outfit#62 #62 outfit no 62 outfitno62">
+  <div class="img-wrap">
+    <img src="images/outfit62.png" alt="Outfit 62" loading="lazy"/>
+    <span class="tag">Outfit 62</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Soft Romance — blush pink</span>
+    <span class="price">₹1,776</span>
+  </div>
+</a><a class="card" href="post63/"
+  data-num="63"
+  data-mood="🌸 soft romance — dusty rose"
+  data-search="outfit 63 outfit#63 #63 outfit no 63 outfitno63">
+  <div class="img-wrap">
+    <img src="images/outfit63.png" alt="Outfit 63" loading="lazy"/>
+    <span class="tag">Outfit 63</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Soft Romance — dusty rose</span>
+    <span class="price">₹1,526</span>
+  </div>
+</a><a class="card" href="post64/"
+  data-num="64"
+  data-mood="🌙 dark feminine — black"
+  data-search="outfit 64 outfit#64 #64 outfit no 64 outfitno64">
+  <div class="img-wrap">
+    <img src="images/outfit64.png" alt="Outfit 64" loading="lazy"/>
+    <span class="tag">Outfit 64</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Dark Feminine — black</span>
+    <span class="price">₹1,891</span>
+  </div>
+</a><a class="card" href="post65/"
+  data-num="65"
+  data-mood="☁️ clean girl — white"
+  data-search="outfit 65 outfit#65 #65 outfit no 65 outfitno65">
+  <div class="img-wrap">
+    <img src="images/outfit65.png" alt="Outfit 65" loading="lazy"/>
+    <span class="tag">Outfit 65</span>
+  </div>
+  <div class="foot">
+    <span class="mood">☁️ Clean Girl — white</span>
+    <span class="price">₹2,176</span>
+  </div>
+</a><a class="card" href="post66/"
+  data-num="66"
+  data-mood="🍓 coquette — cherry red"
+  data-search="outfit 66 outfit#66 #66 outfit no 66 outfitno66">
+  <div class="img-wrap">
+    <img src="images/outfit66.png" alt="Outfit 66" loading="lazy"/>
+    <span class="tag">Outfit 66</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🍓 Coquette — cherry red</span>
+    <span class="price">₹1,597</span>
+  </div>
+</a><a class="card" href="post67/"
+  data-num="67"
+  data-mood="✨ luxury editorial — champagne"
+  data-search="outfit 67 outfit#67 #67 outfit no 67 outfitno67">
+  <div class="img-wrap">
+    <img src="images/outfit67.png" alt="Outfit 67" loading="lazy"/>
+    <span class="tag">Outfit 67</span>
+  </div>
+  <div class="foot">
+    <span class="mood">✨ Luxury Editorial — champagne</span>
+    <span class="price">₹1,765</span>
+  </div>
+</a><a class="card" href="post68/"
+  data-num="68"
+  data-mood="🌸 soft romance — blush pink"
+  data-search="outfit 68 outfit#68 #68 outfit no 68 outfitno68">
+  <div class="img-wrap">
+    <img src="images/outfit68.png" alt="Outfit 68" loading="lazy"/>
+    <span class="tag">Outfit 68</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Soft Romance — blush pink</span>
+    <span class="price">₹1,676</span>
+  </div>
+</a><a class="card" href="post69/"
+  data-num="69"
+  data-mood="🌊 white + sky blue + silver — white"
+  data-search="outfit 69 outfit#69 #69 outfit no 69 outfitno69">
+  <div class="img-wrap">
+    <img src="images/outfit69.png" alt="Outfit 69" loading="lazy"/>
+    <span class="tag">Outfit 69</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌊 White + Sky Blue + Silver — white</span>
+    <span class="price">₹2,157</span>
+  </div>
+</a><a class="card" href="post70/"
+  data-num="70"
+  data-mood="🥂 chocolate + beige + gold — chocolate brown"
+  data-search="outfit 70 outfit#70 #70 outfit no 70 outfitno70">
+  <div class="img-wrap">
+    <img src="images/outfit70.png" alt="Outfit 70" loading="lazy"/>
+    <span class="tag">Outfit 70</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Chocolate + Beige + Gold — chocolate brown</span>
+    <span class="price">₹1,504</span>
+  </div>
+</a><a class="card" href="post71/"
+  data-num="71"
+  data-mood="🥂 chocolate + beige + gold — beige"
+  data-search="outfit 71 outfit#71 #71 outfit no 71 outfitno71">
+  <div class="img-wrap">
+    <img src="images/outfit71.png" alt="Outfit 71" loading="lazy"/>
+    <span class="tag">Outfit 71</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🥂 Chocolate + Beige + Gold — beige</span>
+    <span class="price">₹2,025</span>
+  </div>
+</a><a class="card" href="post72/"
+  data-num="72"
+  data-mood="🌙 dark feminine — burgundy"
+  data-search="outfit 72 outfit#72 #72 outfit no 72 outfitno72">
+  <div class="img-wrap">
+    <img src="images/outfit72.png" alt="Outfit 72" loading="lazy"/>
+    <span class="tag">Outfit 72</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌙 Dark Feminine — burgundy</span>
+    <span class="price">₹2,222</span>
+  </div>
+</a><a class="card" href="post73/"
+  data-num="73"
+  data-mood="🌺 spring bloom — lavender"
+  data-search="outfit 73 outfit#73 #73 outfit no 73 outfitno73">
+  <div class="img-wrap">
+    <img src="images/outfit73.png" alt="Outfit 73" loading="lazy"/>
+    <span class="tag">Outfit 73</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌺 Spring Bloom — lavender</span>
+    <span class="price">₹2,075</span>
+  </div>
+</a><a class="card" href="post74/"
+  data-num="74"
+  data-mood="🌸 blush + ivory + gold — blush pink"
+  data-search="outfit 74 outfit#74 #74 outfit no 74 outfitno74">
+  <div class="img-wrap">
+    <img src="images/outfit74.png" alt="Outfit 74" loading="lazy"/>
+    <span class="tag">Outfit 74</span>
+  </div>
+  <div class="foot">
+    <span class="mood">🌸 Blush + Ivory + Gold — blush pink</span>
+    <span class="price">₹3,970</span>
+  </div>
+</a></div>
+<footer>All links are affiliate links · Prices may vary · © Sculpted Fits</footer>
+<script>
+const cards = Array.from(document.querySelectorAll('.card'));
+const countEl = document.getElementById('count');
+
+function normalize(s) {
+  // Remove spaces, lowercase, remove # and "no"
+  return s.toLowerCase().replace(/\s+/g,'').replace(/#/g,'').replace(/outfitno/g,'').replace(/outfit/g,'').trim();
+}
+
+document.getElementById('search').addEventListener('input', function() {
+  const raw = this.value.trim();
+  const q   = normalize(raw);
+  let shown = 0;
+
+  cards.forEach(c => {
+    if (!raw) { c.style.display=''; shown++; return; }
+
+    const num     = c.dataset.num;                    // "23"
+    const mood    = c.dataset.mood;                   // "dark feminine"
+    const extra   = c.dataset.search;                 // "outfit 23 outfit#23 #23 ..."
+    const normNum = normalize(num);                   // "23"
+    const normSearchData = normalize(extra);
+
+    const match =
+      normNum === q ||                                // exact number match
+      normNum.startsWith(q) ||                       // partial number
+      normalize(mood).includes(q) ||                 // mood keyword
+      normSearchData.includes(q) ||                  // any search variant
+      q === '' ;
+
+    c.style.display = match ? '' : 'none';
+    if (match) shown++;
+  });
+
+  // Remove old empty message
+  const old = document.getElementById('no-results');
+  if (old) old.remove();
+
+  countEl.textContent = raw ? shown + ' outfit' + (shown===1?'':'s') + ' found' : '74 outfits';
+
+  if (!shown && raw) {
+    const d = document.createElement('div');
+    d.id='no-results'; d.className='empty';
+    d.textContent = 'No outfits found for "' + raw + '" — try just the number e.g. 5';
+    document.getElementById('grid').appendChild(d);
+  }
+});
+</script>
+</body>
+</html>
